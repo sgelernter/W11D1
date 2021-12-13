@@ -10,13 +10,15 @@ class Game extends React.Component {
         this.updateGame = this.updateGame.bind(this);
     }
 
-    updateGame(){
-        
+    updateGame(tile, flagged){
+        //debugger
+        console.log(flagged);
+        console.log(tile.pos);
     }
 
     render(){
         return(
-            <ReactBoard board={this.state.board} update={this.updateGame()} />
+            <ReactBoard board={this.state.board} update={this.updateGame} />
         )
     }
 }

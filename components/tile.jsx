@@ -10,29 +10,43 @@ class ReactTile extends React.Component {
         this.revealed = tileObj.explored;
         this.flagged = tileObj.flagged;
         this.adjBombs = tileObj.adjacentBombCount();
+        this.className = "tile";
+        this.update = this.props.update;
+
         this.myFace = this.myFace.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+
+
     }
 
     myFace() {
-        // if (!this.revealed) {
-        //     if (this.flagged) {
-        //         return "&#9873;";
-        //     } else {
-        //         return "";
-        //     }
-        // } else {
+        if (!this.revealed) {
+            if (this.flagged) {
+                return "\u2691";
+            } else {
+                return "";
+            }
+        } else {
+            this.className = "tile-revealed";
             if (this.bombed) {
                 return '💣';
             } else {
                 return this.adjBombs.toString();
             }
-        // }
+        }
+    }
+
+
+    handleClick(tile, flagged) {
+        //debugger
+        this.update(tile, flagged);
     }
 
     render() {
         // debugger
         return(
-            <button>{this.myFace()}</button>
+            <div onAuxClick={() => this.handleClick(this.props.tile, false)} onClick={() => this.handleClick(this.props.tile, true) } 
+                 className={this.className}>{this.myFace()}</div>
         );
     }
 }

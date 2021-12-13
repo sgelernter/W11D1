@@ -1,6 +1,7 @@
 import React from "react";
+import ReactTile from "./tile";
 
-class Board extends React.Component {
+class ReactBoard extends React.Component {
     constructor(props){
         super(props);
         console.log(props);
@@ -10,12 +11,18 @@ class Board extends React.Component {
     }
 
     render(){
+        const grid = this.state.board.grid;
+
         return(
             <div>
-                MORE TEST TEXT
+                {grid.map((row, idx1) => {
+                    return row.map((tile, idx2) => {
+                        return <ReactTile key={[idx1, idx2]}/>
+                    })
+                } )}
             </div>
         )
     }
 }
 
-export default Board;
+export default ReactBoard;

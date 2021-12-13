@@ -12,14 +12,20 @@ class ReactBoard extends React.Component {
 
     render(){
         const grid = this.state.board.grid;
-
+        
+        const mapped = grid.map((row, idx1) => {
+            return (
+                <div>
+                    {row.map((tile, idx2) => {
+                        return <ReactTile key={[idx1, idx2]} tile={tile} />
+                    })}
+                    <br />
+                </div>)     
+        })
+        
         return(
             <div>
-                {grid.map((row, idx1) => {
-                    return row.map((tile, idx2) => {
-                        return <ReactTile key={[idx1, idx2]}/>
-                    })
-                } )}
+                {mapped}
             </div>
         )
     }
